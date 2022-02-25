@@ -1,4 +1,6 @@
 # ivs_pr2
 Druhý projekt IVS 21/22
+
 Tým: Svítící kuskus
-Jazyk: CSharp
+
+https://trello.com/b/CjTAhLbO/projekt
