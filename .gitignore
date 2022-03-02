@@ -1,5 +1,5 @@
 # Visual Studio config
-/.vs/*
+/.vs/**/*
 
 # Compiled Object files
 *.slo
@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+*.suo
+*.v2
