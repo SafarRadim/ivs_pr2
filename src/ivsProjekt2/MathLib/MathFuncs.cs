@@ -6,25 +6,48 @@ namespace MathLib
     {
         public static double Addition(double baseNum, double num)
         {
-            return baseNum + num;
+            double sum = baseNum + num;
+            if (double.IsInfinity(sum))
+            {
+                throw new Exception("Value is too high");
+            }
+
+            return sum;
         }
 
-        public static double Subtraction()
+        public static double Subtraction(double baseNum, double num)
         {
-            double sum = 0;
+            double sum = baseNum - num;
+            if (double.IsInfinity(sum))
+            {
+                throw new Exception("Value is too high");
+            }
 
             return sum;
         }
 
-        public static double Multiplication()
+        public static double Multiplication(double baseNum, double num)
         {
-            double sum = 0;
+            double sum = baseNum * num;
+            if (double.IsInfinity(sum))
+            {
+                throw new Exception("Value is too high");
+            }
 
             return sum;
         }
-        public static double Division()
+        public static double Division(double baseNum, double num)
         {
-            double sum = 0;
+            if (num == 0)
+            {
+                throw new Exception("Divide by zero");
+            }
+
+            double sum = baseNum / num;
+            if (double.IsInfinity(sum))
+            {
+                throw new Exception("Value is too high");
+            }
 
             return sum;
         }
