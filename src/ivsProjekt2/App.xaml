@@ -4,6 +4,18 @@
              xmlns:local="clr-namespace:ivsProjekt2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="baseButton" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="1,1,1,1"/>
+            <Setter Property="Background" Value="#FF353535"/>
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <Style x:Key="numberButton">
+            <Setter Property="Control.Margin" Value="1,1,1,1"/>
+            <Setter Property="Control.Background" Value="#FF272727"/>
+            <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="Control.FontSize" Value="15"/>
+        </Style>
     </Application.Resources>
 </Application>
