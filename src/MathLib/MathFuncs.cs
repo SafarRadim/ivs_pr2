@@ -7,10 +7,6 @@ namespace MathLib
         public static double Addition(double baseNum, double num)
         {
             double sum = baseNum + num;
-            if (double.IsInfinity(sum))
-            {
-                throw new Exception("Value is too high");
-            }
 
             return sum;
         }
@@ -18,10 +14,6 @@ namespace MathLib
         public static double Subtraction(double baseNum, double num)
         {
             double sum = baseNum - num;
-            if (double.IsInfinity(sum))
-            {
-                throw new Exception("Value is too high");
-            }
 
             return sum;
         }
@@ -29,10 +21,6 @@ namespace MathLib
         public static double Multiplication(double baseNum, double num)
         {
             double sum = baseNum * num;
-            if (double.IsInfinity(sum))
-            {
-                throw new Exception("Value is too high");
-            }
 
             return sum;
         }
@@ -44,10 +32,6 @@ namespace MathLib
             }
 
             double sum = baseNum / num;
-            if (double.IsInfinity(sum))
-            {
-                throw new Exception("Value is too high");
-            }
 
             return sum;
         }
@@ -65,7 +49,7 @@ namespace MathLib
                 sum = sum * i;
                 if (double.IsInfinity(sum))
                 {
-                    throw new Exception("Value is too high");
+                    break;
                 }
             }
 
@@ -86,7 +70,7 @@ namespace MathLib
                 sum = sum * baseNum;
                 if (double.IsInfinity(sum))
                 {
-                    throw new Exception("Value is too high");
+                    break;
                 }
             }
             return sum;
