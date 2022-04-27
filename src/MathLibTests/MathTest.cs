@@ -133,19 +133,101 @@ namespace MathLibTests
         [Test]
         public void FactorialTest()
         {
-            Assert.Pass();
+            // Fact(0) = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Factorial(0)).Within(0.000001));
+            // Fact(1) = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Factorial(1)).Within(0.000001));
+            // Fact(2) = 2
+            Assert.That(2, Is.EqualTo(MathFuncs.Factorial(2)).Within(0.000001));
+            // Fact(3) = 6
+            Assert.That(6, Is.EqualTo(MathFuncs.Factorial(3)).Within(0.000001));
+            // Fact(10) = 3628800
+            Assert.That(3628800, Is.EqualTo(MathFuncs.Factorial(10)).Within(0.000001));
+            // Fact(-5) = X
+            Assert.Throws<Exception>(() => MathFuncs.Factorial(-5));
+            // Fact(0.5) = X
+            Assert.Throws<Exception>(() => MathFuncs.Factorial(0.5));
+            // Fact(-0.5) = X
+            Assert.Throws<Exception>(() => MathFuncs.Factorial(-0.5));
+            // Fact(175) = X
+            Assert.Throws<Exception>(() => MathFuncs.Factorial(175));
         }
 
         [Test]
         public void ExponentTest()
         {
-            Assert.Pass();
+            // 0^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(0, 0)).Within(0.000001));
+            // 0^11 = 0
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(0, 11)).Within(0.000001));
+            // 1^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(1, 0)).Within(0.000001));
+            // 1^11 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(1, 11)).Within(0.000001));
+            // 5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(5, 0)).Within(0.000001));
+            // 5^11 = 48828125
+            Assert.That(48828125, Is.EqualTo(MathFuncs.Exponent(5, 11)).Within(0.000001));
+            // -5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(-5, 0)).Within(0.000001));
+            // -5^11 = -48828125
+            Assert.That(-48828125,Is.EqualTo(MathFuncs.Exponent(-5, 11)).Within(0.000001));
+            // 0.5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(0.5, 0)).Within(0.000001));
+            // 0.5^11 = 0.00048828125
+            Assert.That(0.00048828125, Is.EqualTo(MathFuncs.Exponent(0.5, 11)).Within(0.000001));
+            // -0.5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(-0.5, 0)).Within(0.000001));
+            // -0.5^11 = -0.00048828125
+            Assert.That(-0.00048828125, Is.EqualTo(MathFuncs.Exponent(-0.5, 11)).Within(0.000001));
+            // 0^-1 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(0, -1));
+            // 0^0.5 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(0, 0.5));
+            // 0^-0.5 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(0, -0.5));
+            // 10 ^ 310 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(10, 310));
+
         }
 
         [Test]
         public void RootTest()
         {
-            Assert.Pass();
+            // Root(0, 2) = 0
+            Assert.That(0, Is.EqualTo(MathFuncs.Root(0, 2)).Within(0.000001));
+            // Root(0, 3) = 0
+            Assert.That(0, Is.EqualTo(MathFuncs.Root(0, 3)).Within(0.000001));
+            // Root(1, 2) = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Root(1, 2)).Within(0.000001));
+            // Root(1, 3) = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Root(1, 3)).Within(0.000001));
+            // Root(4, 2) = 2
+            Assert.That(2, Is.EqualTo(MathFuncs.Root(4, 2)).Within(0.000001));
+            // Root(8, 3) = 2
+            Assert.That(2, Is.EqualTo(MathFuncs.Root(8, 3)).Within(0.000001));
+            // Root(16, 4) = 2
+            Assert.That(2, Is.EqualTo(MathFuncs.Root(16, 4)).Within(0.000001));
+            // Root(32, 5) = 2
+            Assert.That(2, Is.EqualTo(MathFuncs.Root(32, 5)).Within(0.000001));
+            // Root(-8, 3) = -2
+            Assert.That(-2, Is.EqualTo(MathFuncs.Root(-8, 3)).Within(0.000001));
+            // Root(-32, 5) = -2
+            Assert.That(-2, Is.EqualTo(MathFuncs.Root(-32, 5)).Within(0.000001));
+            // Root(-32, 1) = -32
+            Assert.That(-32, Is.EqualTo(MathFuncs.Root(-32, 1)).Within(0.000001));
+            // Root(-4, 2) = X
+            Assert.Throws<Exception>(() => MathFuncs.Root(-4, 2));
+            // Root(-16, 4) = X
+            Assert.Throws<Exception>(() => MathFuncs.Root(-16, 4));
+            // Root(4, 0) = X
+            Assert.Throws<Exception>(() => MathFuncs.Root(4, 0));
+            // Root(4, 0.2) = X
+            Assert.Throws<Exception>(() => MathFuncs.Root(4, 0.2));
+            // Root(4, -2) = X
+            Assert.Throws<Exception>(() => MathFuncs.Root(4, -2));
+            // Root(4, -0.2) = X
+            Assert.Throws<Exception>(() => MathFuncs.Root(4, -0.2));
         }
     }
 }
