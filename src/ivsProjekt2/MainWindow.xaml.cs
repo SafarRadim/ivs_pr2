@@ -211,7 +211,14 @@ namespace ivsProjekt2
 
         private void plusminus_button_Click(object sender, RoutedEventArgs e)
         {
+            if (String.IsNullOrEmpty(OutputCurrentNumber.Text)
+                 || OutputCurrentNumber.Text == "inf"
+                 || computed)
+            {
+                return;
+            }
 
+            OutputCurrentNumber.Text = (Double.Parse(OutputCurrentNumber.Text) * -1).ToString();
         }
 
         private void dot_button_Click(object sender, RoutedEventArgs e)
