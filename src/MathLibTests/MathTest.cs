@@ -149,14 +149,76 @@ namespace MathLibTests
             Assert.Throws<Exception>(() => MathFuncs.Factorial(0.5));
             // Fact(-0.5) = X
             Assert.Throws<Exception>(() => MathFuncs.Factorial(-0.5));
-            // Fact(175)
+            // Fact(175) = X
             Assert.Throws<Exception>(() => MathFuncs.Factorial(175));
         }
 
         [Test]
         public void ExponentTest()
         {
-            Assert.Pass();
+            // 0^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(0, 0)).Within(0.000001));
+            // 0^11 = 0
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(0, 11)).Within(0.000001));
+            // 0^-1 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(0, -1));
+            // 0^0.5 = 0
+            Assert.That(0, Is.EqualTo(MathFuncs.Exponent(0, 0.5)).Within(0.000001));
+            // 0^-0.5 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(0, -0.5));
+            // 1^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(1, 0)).Within(0.000001));
+            // 1^11 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(1, 11)).Within(0.000001));
+            // 1^-1 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(1, -1)).Within(0.000001));
+            // 1^0.5 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(1, 0.5)).Within(0.000001));
+            // 1^-0.5 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(1, -0.5)).Within(0.000001));
+            // 5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(5, 0)).Within(0.000001));
+            // 5^11 = 48828125
+            Assert.That(48828125, Is.EqualTo(MathFuncs.Exponent(5, 11)).Within(0.000001));
+            // 5^-1 = 0.2
+            Assert.That(0.2, Is.EqualTo(MathFuncs.Exponent(5, -1)).Within(0.000001));
+            // 5^0.5 = 2.2360679774998
+            Assert.That(2.2360679774998, Is.EqualTo(MathFuncs.Exponent(5, 0.5)).Within(0.000001));
+            // 5^-0.5 = 0.44721359549996
+            Assert.That(0.44721359549996, Is.EqualTo(MathFuncs.Exponent(5, -0.5)).Within(0.000001));
+            // -5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(-5, 0)).Within(0.000001));
+            // -5^11 = -48828125
+            Assert.That(-48828125,Is.EqualTo(MathFuncs.Exponent(-5, 11)).Within(0.000001));
+            // -5^-1 = -0.2
+            Assert.That(-0.2, Is.EqualTo(MathFuncs.Exponent(-5, -1)).Within(0.000001));
+            // -5^0.5 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(-5, 0.5));
+            // -5^-0.5 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(-5, -0.5));
+            // 0.5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(0.5, 0)).Within(0.000001));
+            // 0.5^11 = 0.00048828125
+            Assert.That(0.00048828125, Is.EqualTo(MathFuncs.Exponent(0.5, 11)).Within(0.000001));
+            // 0.5^-1 = 2
+            Assert.That(2, Is.EqualTo(MathFuncs.Exponent(0.5, -1)).Within(0.000001));
+            // 0.5^0.5 = 0.70710678118
+            Assert.That(0.70710678118, Is.EqualTo(MathFuncs.Exponent(0.5, 0.5)).Within(0.000001));
+            // 0.5^-0.5 = 1.41421356237
+            Assert.That(1.41421356237, Is.EqualTo(MathFuncs.Exponent(0.5, -0.5)).Within(0.000001));
+            // -0.5^0 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Exponent(-0.5, 0)).Within(0.000001));
+            // -0.5^11 = -0.00048828125
+            Assert.That(-0.00048828125, Is.EqualTo(MathFuncs.Exponent(-0.5, 11)).Within(0.000001));
+            // -0.5^-1 = -2
+            Assert.That(-2, Is.EqualTo(MathFuncs.Exponent(-0.5, -1)).Within(0.000001));
+            // -0.5^0.5 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(-0.5, 0.5));
+            // -0.5^-0.5 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(-0.5, -0.5));
+            // 10 ^ 310 = X
+            Assert.Throws<Exception>(() => MathFuncs.Exponent(10, 310));
+
         }
 
         [Test]
