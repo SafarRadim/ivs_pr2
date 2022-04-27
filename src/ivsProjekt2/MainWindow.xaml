@@ -5,8 +5,153 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ivsProjekt2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Kalkulacka" 
+        Height="450"
+        Width="300" 
+        MinHeight="450" 
+        MinWidth="300">
+    <Window.Resources>
+        
+    </Window.Resources>
 
-    </Grid>
+
+    <StackPanel Background="#FF3E3E3E">
+        <Grid 
+            x:Name="DisplayGrid"
+            Margin="10,10,10,10"
+            Height="100"
+        >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock
+                x:Name="OutputCurrentEquation"
+                Margin="0,0,0,0"
+                Grid.Row="0"
+
+                Text="" 
+                TextAlignment="Right" 
+                FontSize="20" 
+
+                Foreground="#FF989898" 
+             />
+
+                <TextBlock
+                x:Name="OutputCurrentNumber" 
+                Margin="0,0,0,0"
+                Grid.Row="1"
+                
+                Text="0"              
+                TextAlignment="Right" 
+                FontSize="36"
+            
+                Foreground="White" 
+             />
+            </Grid>
+            
+        <Grid
+            x:Name="ControllGtid"
+            Margin="5, 5, 5, 5" 
+            Height="280"
+        >
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <Button x:Name="CE_button"  Grid.Row="0" Grid.Column="0" 
+                    Content="CE" Style="{DynamicResource baseButton}"
+                    Click="CE_button_Click"/>
+            <Button x:Name="C_button" Grid.Row="0" Grid.Column="1" 
+                    Content="C" Style="{StaticResource baseButton}"
+                    Click="C_button_Click"/>
+            <Button x:Name="back_button" Grid.Row="0" Grid.Column="2" 
+                    Content="back" Style="{StaticResource baseButton}"
+                    Click="back_button_Click"/>
+            <Button x:Name="func_button" Grid.Row="0" Grid.Column="3" 
+                    Content="???" Style="{StaticResource baseButton}"
+                    Click="func_button_Click"/>
+
+            <Button x:Name="root_button" Grid.Row="1" Grid.Column="0" 
+                    Content="root" Style="{StaticResource baseButton}"
+                    Click="root_button_Click"/>
+            <Button x:Name="pow_button" Grid.Row="1" Grid.Column="1" 
+                    Content="pow" Style="{StaticResource baseButton}"
+                    Click="pow_button_Click"/>
+            <Button x:Name="factorial_button" Grid.Row="1" Grid.Column="2" 
+                    Content="!" Style="{StaticResource baseButton}"
+                    Click="factorial_button_Click"/>
+            <Button x:Name="plus_button" Grid.Row="1" Grid.Column="3" 
+                    Content="+" Style="{StaticResource baseButton}"
+                    Click="plus_button_Click"/>
+
+            <Button x:Name="seven_button" Grid.Row="2" Grid.Column="0" 
+                    Content="7" Style="{StaticResource numberButton}"
+                    Click="seven_button_Click"/>
+            <Button x:Name="eight_button" Grid.Row="2" Grid.Column="1" 
+                    Content="8" Style="{StaticResource numberButton}"
+                    Click="eight_button_Click"/>
+            <Button x:Name="nine_button" Grid.Row="2" Grid.Column="2" 
+                    Content="9" Style="{StaticResource numberButton}"
+                    Click="nine_button_Click"/>
+            <Button x:Name="minus_button" Grid.Row="2" Grid.Column="3" 
+                    Content="-" Style="{StaticResource baseButton}"
+                    Click="minus_button_Click"/>
+
+            <Button x:Name="four_button" Grid.Row="3" Grid.Column="0" 
+                    Content="4" Style="{StaticResource numberButton}"
+                    Click="four_button_Click"/>
+            <Button x:Name="five_button" Grid.Row="3" Grid.Column="1" 
+                    Content="5" Style="{StaticResource numberButton}"
+                    Click="five_button_Click"/>
+            <Button x:Name="six_button" Grid.Row="3" Grid.Column="2" 
+                    Content="6" Style="{StaticResource numberButton}"
+                    Click="six_button_Click"/>
+            <Button x:Name="multiply_button" Grid.Row="3" Grid.Column="3" 
+                    Content="*" Style="{StaticResource baseButton}"
+                    Click="multiply_button_Click"/>
+
+            <Button x:Name="one_button" Grid.Row="4" Grid.Column="0" 
+                    Content="1" Style="{StaticResource numberButton}"
+                    Click="one_button_Click"/>
+            <Button x:Name="two_button" Grid.Row="4" Grid.Column="1" 
+                    Content="2" Style="{StaticResource numberButton}"
+                    Click="two_button_Click"/>
+            <Button x:Name="three_button" Grid.Row="4" Grid.Column="2" 
+                    Content="3" Style="{StaticResource numberButton}"
+                    Click="three_button_Click"/>
+            <Button x:Name="division_button" Grid.Row="4" Grid.Column="3" 
+                    Content="/" Style="{StaticResource baseButton}"
+                    Click="division_button_Click"/>
+
+            <Button x:Name="plusminus_button" Grid.Row="5" Grid.Column="0" 
+                    Content="+/-" Style="{StaticResource baseButton}"
+                    Click="plusminus_button_Click"/>
+            <Button x:Name="zero_button" Grid.Row="5" Grid.Column="1" 
+                    Content="0" Style="{StaticResource numberButton}"
+                    Click="zero_button_Click"/>
+            <Button x:Name="dot_button" Grid.Row="5" Grid.Column="2" 
+                    Content="." Style="{StaticResource baseButton}"
+                    Click="dot_button_Click"/>
+            <Button x:Name="equals_button" Grid.Row="5" Grid.Column="3" 
+                    Content="=" Style="{StaticResource baseButton}"
+                    Click="equals_button_Click"/>
+        </Grid>
+    </StackPanel>
 </Window>
