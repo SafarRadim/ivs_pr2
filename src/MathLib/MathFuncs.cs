@@ -24,6 +24,7 @@ namespace MathLib
 
             return sum;
         }
+
         public static double Division(double baseNum, double num)
         {
             if (num == 0)
@@ -35,6 +36,7 @@ namespace MathLib
 
             return sum;
         }
+
         public static double Factorial(double num)
         {
             if (num == 0) { return 1; }
@@ -75,6 +77,7 @@ namespace MathLib
             }
             return sum;
         }
+
         public static double Root(double baseNum, double degree)
         {
             if (degree%1 > 0 || degree < 1)
@@ -108,6 +111,13 @@ namespace MathLib
             }
             if (double.IsNaN(x)) { x = 0; }
             return x;
+        }
+
+        public static double Modulo(double baseNum, double num)
+        {
+            double sum = baseNum % num;
+
+            return sum;
         }
     }
 }
