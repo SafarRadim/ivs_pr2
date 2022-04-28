@@ -213,5 +213,20 @@ namespace MathLibTests
             // Root(4, -0.2) = X
             Assert.Throws<Exception>(() => MathFuncs.Root(4, -0.2));
         }
+
+        [Test]
+        public void ModuloTest()
+        {
+            // 1 % 1 = 0
+            Assert.That(0, Is.EqualTo(MathFuncs.Modulo(1, 1)).Within(0.000001));
+            // 10 % 0 = 10
+            Assert.That(10, Is.EqualTo(MathFuncs.Modulo(10, 0)).Within(0.000001));
+            // -10 % 0 = -10
+            Assert.That(-10, Is.EqualTo(MathFuncs.Modulo(-10, 0)).Within(0.000001));
+            // 5 % 2 = 1
+            Assert.That(1, Is.EqualTo(MathFuncs.Modulo(5, 2)).Within(0.000001));
+            // 10.1 % 3 = 1.1
+            Assert.That(1.1, Is.EqualTo(MathFuncs.Modulo(10.1, 3)).Within(0.000001));
+        }
     }
 }
