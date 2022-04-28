@@ -1,0 +1,60 @@
+﻿návod k použití
+
+
+
+
+1. Instalace
+před instalací zkontrolujte, že splňujete systémové požadavky
+
+
+Samotnou instalaci provedete kliknutím na setup.exe. Pokračujte smotnou instalací podle pokynů instalátoru.
+
+
+        
+2. Čtení z displeje
+na displeji vidíme dvě linie. Hodní linie slouží jako cash posledních instrukcí. Dolní linie slouží právě pro sledování momentálně zadávných instrukcí
+
+
+výstupní data následně vidíme v dolní linii, horní linii vidíme námi zadaný výpočet
+
+
+3. Legenda operací
+“CE” - clear entry, vymaže dolní linii
+“C” - clear, vymaže dolní i horní linii
+“back” - smaže poslední zadaný znak
+“root” - provede odmocninu hodnoty
+“pow” - provede mocninu hodnoty
+“!” - vypočítá faktoriál hodnoty
+“+” - provede sčítání hodnot
+“-” - provede odčítání hodnot
+“*” - provede násobení hodnot
+“/” - provede dělení hodnot
+“=” - vypočítá výsledek výrazu
+“.” - zapíše desetinou čárku
+“+/-” - změní znaménko hodnoty v dolní liště
+
+
+4. Zadávání výrazů a hodnot
+
+
+Výrazy zadávejte podle priority, tedy od nejvyšší po nejnižší prioritu. Hodnoty a výrazy zadávejte z leva do prava. Kalkuklačka nerozlišuje automaticky prioritu pořádí výpočtu. Tedy pokud potřebujete vypočítat 3 * 2 +2 ^ 2 tak výpočet se provede jako ((3 * 2) + 2) ^ 2 .
+
+
+Zadávejte hodnoty pomocí myši nebo numerické klávesnice. Hodnoty se vám budou psát do dolní linie ve standartním pořádím psaní grafému. Po zvolení matematického operátoru, hodnota se přenese do horní linie. Po zvolení operátoru táto akce již nelze vzít zpět. Pokud jste zvolili binární operaci zvolte další hodnotu zadáním do dolní lišty standartní způsobem. Pokud chcete zadat další hodnotu opět stiknětě jiný operátor. V dolní linii se Vám ukáže mezivýpočet a v horní aktualní výraz. Jestliže chcete smazat celou hodnotu v dolní liště použijte  “CE”. V případě, že pouze jeden znak stiknětě “back”. Pakliže chcete již smazat vešeký výraz stiknětě “C”
+Pokud již nechcete zadávat hodnoty stikněte “=” a do dolní lišty se Vám načte konečná hodnota výrazu.
+5. Používání unárních operacích
+pokud chcete použít libovolnou unární operaci. Nejdříve zadejte hodnotu a následně proveďte unární operaci.
+
+
+
+
+6. Chybová hlášení
+                Cannot divide - v případě, že se pokusíte dělit hodnotou “0”
+
+
+exponent has to be positive int - v případě že se pokoušíte mocnit nižším    číslem než “0”
+
+
+                value has to be > 0 - v případě že odmocňujete číslem 0 a nižším 
+7. Odnistalace
+V případě,že chcete odinstalovat program proveďte standartně v Nastavení -> Aplikace
