@@ -115,6 +115,8 @@ namespace MathLib
 
         public static double Modulo(double baseNum, double num)
         {
+            if (num == 0) { return baseNum; }
+
             double sum = baseNum % num;
 
             return sum;
