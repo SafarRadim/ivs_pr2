@@ -1,0 +1,3 @@
+xsafar27 100 (GUI, od-instalator)
+xzelin27 50 (dokumentace, betatesting)
+xzelin26 100 (knihovna, testy)
