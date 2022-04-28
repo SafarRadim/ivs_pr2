@@ -4,6 +4,12 @@ namespace MathLib
 {
     public static class MathFuncs
     {
+        /// <summary>
+        /// Adds two numbers together.
+        /// </summary>
+        /// <param name="baseNum">first number</param>
+        /// <param name="num">number to be added</param>
+        /// <returns>result of addition</returns>
         public static double Addition(double baseNum, double num)
         {
             double sum = baseNum + num;
@@ -11,6 +17,12 @@ namespace MathLib
             return sum;
         }
 
+        /// <summary>
+        /// Subtracts second number from the first one.
+        /// </summary>
+        /// <param name="baseNum">number to be subtracted from</param>
+        /// <param name="num">number to be subtracted</param>
+        /// <returns>result of subtraction</returns>
         public static double Subtraction(double baseNum, double num)
         {
             double sum = baseNum - num;
@@ -18,6 +30,12 @@ namespace MathLib
             return sum;
         }
 
+        /// <summary>
+        /// Multiplies the first number by the second one.
+        /// </summary>
+        /// <param name="baseNum">number to be multiplied</param>
+        /// <param name="num">number to be multiplied by</param>
+        /// <returns>result of multiplication</returns>
         public static double Multiplication(double baseNum, double num)
         {
             double sum = baseNum * num;
@@ -25,6 +43,13 @@ namespace MathLib
             return sum;
         }
 
+        /// <summary>
+        /// Divides the first number by the second one.
+        /// </summary>
+        /// <param name="baseNum">number to be divided</param>
+        /// <param name="num">number to be divided by</param>
+        /// <returns>result of division</returns>
+        /// <exception cref="Exception">division by zero</exception>
         public static double Division(double baseNum, double num)
         {
             if (num == 0)
@@ -37,6 +62,12 @@ namespace MathLib
             return sum;
         }
 
+        /// <summary>
+        /// Calculates factorial of given number.
+        /// </summary>
+        /// <param name="num">number to be calculated</param>
+        /// <returns>result of factorial</returns>
+        /// <exception cref="Exception">invalid factorial value</exception>
         public static double Factorial(double num)
         {
             if (num == 0) { return 1; }
@@ -58,6 +89,14 @@ namespace MathLib
             return sum;
         }
 
+        /// <summary>
+        /// Raises value of the first number to the power of the second number.
+        /// Power can be only natural numbers.
+        /// </summary>
+        /// <param name="baseNum">number to be raised</param>
+        /// <param name="power">power to be raised to</param>
+        /// <returns>number raised to the power</returns>
+        /// <exception cref="Exception">invalid exponent value</exception>
         public static double Exponent(double baseNum, double power)
         {
             if (power == 0) { return 1; }
@@ -78,6 +117,13 @@ namespace MathLib
             return sum;
         }
 
+        /// <summary>
+        /// Calculates the nth root of the number.
+        /// </summary>
+        /// <param name="baseNum">number to be calculated</param>
+        /// <param name="degree">degree of the root</param>
+        /// <returns>result of root</returns>
+        /// <exception cref="Exception">invalid root degree, negative number under root</exception>
         public static double Root(double baseNum, double degree)
         {
             if (degree%1 > 0 || degree < 1)
@@ -113,6 +159,12 @@ namespace MathLib
             return x;
         }
 
+        /// <summary>
+        /// Calculates second number modulo of the first number.
+        /// </summary>
+        /// <param name="baseNum">number to be divided</param>
+        /// <param name="num">number to be divided by</param>
+        /// <returns>remainder of division</returns>
         public static double Modulo(double baseNum, double num)
         {
             if (num == 0) { return baseNum; }
