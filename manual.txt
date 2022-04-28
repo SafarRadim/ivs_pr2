@@ -24,6 +24,7 @@ výstupní data následně vidíme v dolní linii, horní linii vidíme námi za
 “back” - smaže poslední zadaný znak
 “root” - provede odmocninu hodnoty
 “pow” - provede mocninu hodnoty
+"mod" - vypočítá zbytek po dělení
 “!” - vypočítá faktoriál hodnoty
 “+” - provede sčítání hodnot
 “-” - provede odčítání hodnot
