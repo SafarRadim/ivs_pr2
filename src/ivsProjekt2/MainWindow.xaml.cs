@@ -17,7 +17,7 @@ namespace ivsProjekt2
         
         bool computed;      // Used to check if a number should add or overwrite
         bool equated;       // Used to check if the values should be cleared or not
-        Operations lastOp;  // Used for working logic
+        Operations lastOp = Operations.none;  // Used for working logic
 
         enum Operations
         {
@@ -28,7 +28,8 @@ namespace ivsProjekt2
             factorial,
             power,
             root,
-            equals
+            equals,
+            none
         }
 
         public MainWindow()
@@ -43,6 +44,85 @@ namespace ivsProjekt2
         /// 
         /// =========
 
+        /// ------
+        /// Helper
+        /// ------
+
+        /// <summary>
+        /// Clears text boxes if needed
+        /// </summary>
+        /// If computed flag is true, clears OutputCurrentNumber, sets computed false
+        /// If equated flag is true, clears both text boxes and sets firsNum to 0, sets equated false
+        private void check_number()
+        { 
+            if (computed)
+            {
+                OutputCurrentNumber.Text = String.Empty;
+                computed = false;
+            }
+
+            if (equated)
+            {
+                OutputCurrentNumber.Text = String.Empty;
+                OutputCurrentEquation.Text = String.Empty;
+                firstNum = 0;
+                equated = false;
+            }
+
+            if (OutputCurrentNumber.Text == "inf")
+            {
+                C_logic();
+            }
+        }
+
+        /// <summary>
+        /// Computes latest input
+        /// </summary>
+        /// Based on lastOp computes latest "equation"
+        private void compute_last()
+        {
+            computed = true;
+            switch (lastOp)
+            {
+                case Operations.addition:
+                    outNum = MathFuncs.Addition(firstNum, secondNum);
+                    firstNum = outNum;
+                    break;
+
+                case Operations.subtractition:
+                    outNum = MathFuncs.Subtraction(firstNum, secondNum);
+                    firstNum = outNum;
+                    break;
+
+                case Operations.multiplication:
+                    outNum = MathFuncs.Multiplication(firstNum, secondNum);
+                    firstNum = outNum;
+                    break;
+
+                case Operations.division:
+                    outNum = MathFuncs.Division(firstNum, secondNum);
+                    firstNum = outNum;
+                    break;
+
+                case Operations.power:
+                    outNum = MathFuncs.Exponent(firstNum, secondNum);
+                    if (secondNum < 0)
+                    {
+                        OutputCurrentNumber.Text = "Exponent has to be > 0.";
+                        return;
+                    }
+                    firstNum = outNum;
+                    break;
+
+                case Operations.factorial:
+                    OutputCurrentNumber.Text = String.Empty;
+                    break;
+
+                default:
+                    computed = false;
+                    break;
+            }
+        }
 
         /// --------------
         /// Function logic
@@ -55,6 +135,7 @@ namespace ivsProjekt2
         private void CE_logic()
         {
             OutputCurrentNumber.Text = String.Empty;
+            lastOp = Operations.none;
         }
 
         /// <summary>
@@ -67,6 +148,8 @@ namespace ivsProjekt2
             OutputCurrentNumber.Text = String.Empty;
             firstNum = 0;
             secondNum = 0;
+            outNum = 0;
+            lastOp = Operations.none;
         }
 
         /// <summary>
@@ -76,6 +159,10 @@ namespace ivsProjekt2
         private void back_logic()
         {
             OutputCurrentNumber.Text = OutputCurrentNumber.Text.Remove(OutputCurrentNumber.Text.Length - 1);
+            if (OutputCurrentNumber.Text.Length == 0)
+            {
+                OutputCurrentNumber.Text = "0";
+            }
         }
 
         /// <summary>
@@ -111,7 +198,8 @@ namespace ivsProjekt2
 
             secondNum = Double.Parse(OutputCurrentNumber.Text);
 
-            if (firstNum == 0)
+
+            if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
                 OutputCurrentEquation.Text = secondNum.ToString() + "^";
@@ -119,6 +207,12 @@ namespace ivsProjekt2
             }
             else
             {
+                if (secondNum < 0)
+                {
+                    OutputCurrentNumber.Text = "Exponent has to be > 0.";
+                    computed = true;
+                    return;
+                }
                 compute_last();
                 OutputCurrentEquation.Text = outNum.ToString() + "^";
                 OutputCurrentNumber.Text = outNum.ToString();
@@ -128,26 +222,52 @@ namespace ivsProjekt2
         }
 
         /// <summary>
-        /// Logic for Plus button
+        /// Logic for Factorial button
         /// </summary>
         /// If there is zero stored in first num it replaces
         /// If there is value stored, computes latest equation and adds itself
         private void factorial_logic()
         {
             if (String.IsNullOrEmpty(OutputCurrentNumber.Text)
-                || OutputCurrentNumber.Text == "inf"
-                || computed)
+                || OutputCurrentNumber.Text == "inf")
             {
                 return;
             }
 
             secondNum = Double.Parse(OutputCurrentNumber.Text);
 
-            
+            if (secondNum < 0)
+            {
+                OutputCurrentNumber.Text = "Value has to be > 0.";
+                return;
+            }
+
             compute_last();
-            OutputCurrentEquation.Text = outNum.ToString() + "!";
-            OutputCurrentNumber.Text = MathFuncs.Factorial(outNum).ToString();
-            
+
+            if (outNum < 0)
+            {
+                C_logic();
+                OutputCurrentNumber.Text = "Value has to be > 0.";
+                return;
+            }
+
+            if (outNum == 0 || Double.IsInfinity(firstNum))
+            {
+                OutputCurrentEquation.Text = secondNum.ToString() + "!";
+                firstNum = MathFuncs.Factorial(secondNum);
+                OutputCurrentNumber.Text = firstNum.ToString();
+            }
+            else
+            {
+                OutputCurrentEquation.Text = outNum.ToString() + "!";
+                outNum = MathFuncs.Factorial(outNum);
+                OutputCurrentNumber.Text = outNum.ToString();
+                firstNum = outNum;
+            }
+
+            computed = false;
+            lastOp = Operations.factorial;
+
         }
 
         /// <summary>
@@ -166,8 +286,8 @@ namespace ivsProjekt2
 
             secondNum = Double.Parse(OutputCurrentNumber.Text);
 
-            if (firstNum == 0)
-            {
+            if (firstNum == 0 || Double.IsInfinity(firstNum))
+            { 
                 firstNum = secondNum;
                 OutputCurrentEquation.Text = secondNum.ToString() + " +";
                 OutputCurrentNumber.Text = String.Empty;
@@ -198,7 +318,7 @@ namespace ivsProjekt2
 
             secondNum = Double.Parse(OutputCurrentNumber.Text);
 
-            if (firstNum == 0)
+            if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
                 OutputCurrentEquation.Text = secondNum.ToString() + " -";
@@ -230,7 +350,7 @@ namespace ivsProjekt2
 
             secondNum = Double.Parse(OutputCurrentNumber.Text);
 
-            if (firstNum == 0)
+            if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
                 OutputCurrentEquation.Text = secondNum.ToString() + " *";
@@ -270,7 +390,7 @@ namespace ivsProjekt2
                 return;
             }
 
-            if (firstNum == 0)
+            if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
                 OutputCurrentEquation.Text = secondNum.ToString() + " /";
@@ -297,7 +417,10 @@ namespace ivsProjekt2
             {
                 return;
             }
-
+            if (OutputCurrentNumber.Text == "0")
+            {
+                return;
+            }
             OutputCurrentNumber.Text = (Double.Parse(OutputCurrentNumber.Text) * -1).ToString();
         }
 
@@ -337,6 +460,11 @@ namespace ivsProjekt2
                 secondNum = Double.Parse(OutputCurrentNumber.Text);
             }
 
+            if (lastOp == Operations.equals)
+            {
+                return;
+            }
+
             switch (lastOp)
             {
                 case Operations.addition:
@@ -365,16 +493,49 @@ namespace ivsProjekt2
                     OutputCurrentEquation.Text = firstNum.ToString() + " / " + secondNum.ToString() + " =";
                     outNum = MathFuncs.Division(firstNum, secondNum);
                     break;
+                
                 case Operations.power:
+                    if (secondNum < 0)
+                    {
+                        OutputCurrentNumber.Text = "Exponent has to be > 0.";
+                        lastOp = Operations.equals;
+                        firstNum = 0;
+                        secondNum = 0;
+                        outNum = 0;
+                        computed = true;
+                        equated = true;
+                        return;
+                    }
                     OutputCurrentEquation.Text = firstNum.ToString() + "^" + secondNum.ToString() + " =";
                     outNum = MathFuncs.Exponent(firstNum, secondNum);
                     break;
 
+                case Operations.factorial:
+                    OutputCurrentNumber.Text = outNum.ToString() + "! =";
+                    outNum = MathFuncs.Factorial(firstNum);
+                    if (secondNum < 0)
+                    {
+                        OutputCurrentNumber.Text = "Value has to be > 0.";
+                        lastOp = Operations.equals;
+                        firstNum = 0;
+                        secondNum = 0;
+                        outNum = 0;
+                        computed = true;
+                        equated = true;
+                        return;
+                    }
+                    break;
+
+                default:
+                    break;
+
             }
 
-            firstNum = outNum;
             OutputCurrentNumber.Text = outNum.ToString();
             lastOp = Operations.equals;
+            firstNum = 0;
+            secondNum = 0;
+            outNum = 0;
             computed = true;
             equated = true;
         }
@@ -382,184 +543,23 @@ namespace ivsProjekt2
         /// ------------
         /// number logic
         /// ------------
-
-        /// <summary>
-        /// Logic for One button
-        /// </summary>
-        /// Appends 1 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 1 instead
-        private void one_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "1";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "1";
-        }
-
-        /// <summary>
-        /// Logic for Two button
-        /// </summary>
-        /// Appends 2 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 2 instead
-        private void two_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "2";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "2";
-        }
-
-        /// <summary>
-        /// Logic for Three button
-        /// </summary>
-        /// Appends 3 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 3 instead
-        private void three_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "3";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "3";
-        }
-
-        /// <summary>
-        /// Logic for Four button
-        /// </summary>
-        /// Appends 4 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 4 instead
-        private void four_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "4";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "4";
-        }
         
         /// <summary>
-        /// Logic for Five button
+        /// Adds num to output or replaces it when its 0
         /// </summary>
-        /// Appends 5 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 5 instead
-        private void five_logic()
+        /// <param name="num"> Number string </param>
+        private void updateNumberOutput(string num)
         {
             check_number();
 
-            if (OutputCurrentNumber.Text == "0")
+            if (OutputCurrentNumber.Text == "0" || lastOp == Operations.factorial)
             {
-                OutputCurrentNumber.Text = "5";
+                lastOp = Operations.none;
+                OutputCurrentNumber.Text = num;
                 return;
             }
 
-            OutputCurrentNumber.Text += "5";
-        }
-
-        /// <summary>
-        /// Logic for Six button
-        /// </summary>
-        /// Appends 6 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 6 instead
-        private void six_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "6";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "6";
-        }
-
-        /// <summary>
-        /// Logic for Seven button
-        /// </summary>
-        /// Appends 7 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 7 instead
-        private void seven_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "7";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "7";
-        }
-
-        /// <summary>
-        /// Logic for Eight button
-        /// </summary>
-        /// Appends 8 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 8 instead
-        private void eight_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "8";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "8";
-        }
-
-        /// <summary>
-        /// Logic for Nine button
-        /// </summary>
-        /// Appends 9 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, it overwrites it with 9 instead
-        private void nine_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                OutputCurrentNumber.Text = "9";
-                return;
-            }
-
-            OutputCurrentNumber.Text += "9";
-        }
-
-        /// <summary>
-        /// Logic for Zero button
-        /// </summary>
-        /// Appends 0 to OutputCurrentNumber
-        /// If OutputCurrentNumber is zero, does nothing
-        private void zero_logic()
-        {
-            check_number();
-
-            if (OutputCurrentNumber.Text == "0")
-            {
-                return;
-            }
-
-            OutputCurrentNumber.Text += "0";
+            OutputCurrentNumber.Text += num;
         }
 
         /// =============
@@ -646,52 +646,52 @@ namespace ivsProjekt2
 
         private void one_button_Click(object sender, RoutedEventArgs e)
         {
-            one_logic();
+            updateNumberOutput("1");
         }
 
         private void two_button_Click(object sender, RoutedEventArgs e)
         {
-            two_logic();
+            updateNumberOutput("2");
         }
 
         private void three_button_Click(object sender, RoutedEventArgs e)
         {
-            three_logic();
+            updateNumberOutput("3");
         }
 
         private void four_button_Click(object sender, RoutedEventArgs e)
         {
-            four_logic();
+            updateNumberOutput("4");
         }
 
         private void five_button_Click(object sender, RoutedEventArgs e)
         {
-            five_logic();
+            updateNumberOutput("5");
         }
 
         private void six_button_Click(object sender, RoutedEventArgs e)
         {
-            six_logic();
+            updateNumberOutput("6");
         }
 
         private void seven_button_Click(object sender, RoutedEventArgs e)
         {
-            seven_logic();
+            updateNumberOutput("7");
         }
 
         private void eight_button_Click(object sender, RoutedEventArgs e)
         {
-            eight_logic();
+            updateNumberOutput("8");
         }
 
         private void nine_button_Click(object sender, RoutedEventArgs e)
         {
-            nine_logic();
+            updateNumberOutput("9");
         }
 
         private void zero_button_Click(object sender, RoutedEventArgs e)
         {
-            zero_logic();
+            updateNumberOutput("0");
         }
 
         /// =========
@@ -704,52 +704,52 @@ namespace ivsProjekt2
         {
             if (e.Key == Key.NumPad1 || e.Key == Key.D1)
             {
-                one_logic();
+                updateNumberOutput("1");
             }
 
             if (e.Key == Key.NumPad2 || e.Key == Key.D2)
             {
-                two_logic();
+                updateNumberOutput("2");
             }
 
             if (e.Key == Key.NumPad3 || e.Key == Key.D3)
             {
-                three_logic();
+                updateNumberOutput("3");
             }
 
             if (e.Key == Key.NumPad4 || e.Key == Key.D4)
             {
-                four_logic();
+                updateNumberOutput("4");
             }
 
             if (e.Key == Key.NumPad5 || e.Key == Key.D5)
             {
-                five_logic();
+                updateNumberOutput("5");
             }
 
             if (e.Key == Key.NumPad6 || e.Key == Key.D6)
             {
-                six_logic();
+                updateNumberOutput("6");
             }
 
             if (e.Key == Key.NumPad7 || e.Key == Key.D7)
             {
-                seven_logic();
+                updateNumberOutput("7");
             }
 
             if (e.Key == Key.NumPad8 || e.Key == Key.D8)
             {
-                eight_logic();
+                updateNumberOutput("8");
             }
 
             if (e.Key == Key.NumPad9 || e.Key == Key.D9)
             {
-                nine_logic();
+                updateNumberOutput("9");
             }
 
             if (e.Key == Key.NumPad0 || e.Key == Key.NumPad0)
             {
-                zero_logic();
+                updateNumberOutput("0");
             }
 
             if (e.Key == Key.Add)
@@ -790,72 +790,6 @@ namespace ivsProjekt2
             if (e.Key == Key.Decimal)
             {
                 dot_logic();
-            }
-        }
-        /// ======
-        /// 
-        /// Helper
-        /// 
-        /// ======
-
-        /// <summary>
-        /// Clears text boxes if needed
-        /// </summary>
-        /// If computed flag is true, clears OutputCurrentNumber, sets computed false
-        /// If equated flag is true, clears both text boxes and sets firsNum to 0, sets equated false
-        private void check_number()
-        {
-            if (computed)
-            {
-                OutputCurrentNumber.Text = String.Empty;
-                computed = false;
-            }
-
-            if (equated)
-            {
-                OutputCurrentNumber.Text = String.Empty;
-                OutputCurrentEquation.Text = String.Empty;
-                firstNum = 0;
-                equated = false;
-            }
-        }
-
-        /// <summary>
-        /// Computes latest input
-        /// </summary>
-        /// Based on lastOp computes latest "equation"
-        private void compute_last()
-        {
-            computed = true;
-            switch (lastOp)
-            {
-                case Operations.addition:
-                    outNum = MathFuncs.Addition(firstNum, secondNum);
-                    firstNum = outNum;
-                    break;
-
-                case Operations.subtractition:
-                    outNum = MathFuncs.Subtraction(firstNum, secondNum);
-                    firstNum = outNum;
-                    break;
-
-                case Operations.multiplication:
-                    outNum = MathFuncs.Multiplication(firstNum, secondNum);
-                    firstNum = outNum;
-                    break;
-
-                case Operations.division:
-                    outNum = MathFuncs.Division(firstNum, secondNum);
-                    firstNum = outNum;
-                    break;
-
-                case Operations.power:
-                    outNum = MathFuncs.Exponent(firstNum, secondNum);
-                    firstNum = outNum;
-                    break;
-
-                default:
-                    break;
             }
         }
     }
