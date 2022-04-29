@@ -53,9 +53,9 @@ pokud chcete použít libovolnou unární operaci. Nejdříve zadejte hodnotu a 
                 Cannot divide - v případě, že se pokusíte dělit hodnotou “0”
 
 
-exponent has to be positive int - v případě že se pokoušíte mocnit nižším    číslem než “0”
+                degree has to be positive int - v případě že se pokoušíte odmocnit nižším číslem než “0”
 
 
-                value has to be > 0 - v případě že odmocňujete číslem 0 a nižším 
+                Base number has to be > 0 - v případě že odmocňujete číslem 0 a nižším 
 7. Odnistalace
 V případě,že chcete odinstalovat program proveďte standartně v Nastavení -> Aplikace
