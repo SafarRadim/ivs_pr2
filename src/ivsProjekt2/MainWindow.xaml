@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ivsProjekt2"
         mc:Ignorable="d"
-        Title="Kalkulacka" 
+        Title="GC_Calculator" 
         Height="450"
         Width="300" 
         MinHeight="450" 
-        MinWidth="300">
+        MinWidth="300"
+        MaxHeight="450"
+        MaxWidth="300">
     <Window.Resources>
         
     </Window.Resources>
@@ -47,12 +49,12 @@
                 TextAlignment="Right" 
                 FontSize="36"
             
-                Foreground="White" 
+                Foreground="White"
              />
             </Grid>
             
         <Grid
-            x:Name="ControllGtid"
+            x:Name="ControllGrid"
             Margin="5, 5, 5, 5" 
             Height="280"
         >
@@ -139,7 +141,7 @@
                 <Button.ToolTip>
                     <ToolTip>
                         <DockPanel>
-                            <TextBlock>Calculates root.</TextBlock>
+                            <TextBlock>Calculates n-th root.</TextBlock>
                         </DockPanel>
                     </ToolTip>
                 </Button.ToolTip>
@@ -306,7 +308,7 @@
             <Button 
                 x:Name="dot_button" 
                 Grid.Row="5" Grid.Column="2" 
-                Content="." Style="{StaticResource baseButton}"
+                Content="," Style="{StaticResource baseButton}"
                 Click="dot_button_Click">
                 <Button.ToolTip>
                     <ToolTip>

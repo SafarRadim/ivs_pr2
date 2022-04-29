@@ -50,6 +50,21 @@ namespace ivsProjekt2
         /// ------
 
         /// <summary>
+        /// Changes font size if OutputCurrentNumber is text
+        /// </summary>
+        private void checkOutput()
+        {
+            double val;
+            if (!Double.TryParse(OutputCurrentNumber.Text, out val))
+            {
+                OutputCurrentNumber.FontSize = 18;
+            } else
+            {
+                OutputCurrentNumber.FontSize = 36;
+            }
+        }
+
+        /// <summary>
         /// Clears text boxes if needed
         /// </summary>
         /// If computed flag is true, clears OutputCurrentNumber, sets computed false
@@ -104,6 +119,7 @@ namespace ivsProjekt2
                     if (secondNum == 0)
                     {
                         OutputCurrentNumber.Text = "Cannot divide";
+                        checkOutput();
                         computed = true;
                         equated = true;
                         return 1;
@@ -117,6 +133,7 @@ namespace ivsProjekt2
                     {
                         C_logic();
                         OutputCurrentNumber.Text = "Exponent has to be positive int";
+                        checkOutput();
                         equated = true;
                         return 1;
                     }
@@ -137,6 +154,7 @@ namespace ivsProjekt2
                     {
                         C_logic();
                         OutputCurrentNumber.Text = "Base number has to be >0";
+                        checkOutput();
                         equated = true;
                         return 1;
                     }
@@ -210,7 +228,7 @@ namespace ivsProjekt2
             if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
-                OutputCurrentEquation.Text = secondNum.ToString() + " %";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + " %";
                 OutputCurrentNumber.Text = String.Empty;
             }
             else
@@ -219,8 +237,8 @@ namespace ivsProjekt2
                 {
                     return;
                 }
-                OutputCurrentEquation.Text = outNum.ToString() + " %";
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + " %";
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
             }
 
             lastOp = Operations.modulo;
@@ -248,10 +266,12 @@ namespace ivsProjekt2
                 {
                     C_logic();
                     OutputCurrentNumber.Text = "Degree has to be positive int";
+                    checkOutput();
+                    computed = true;
                     return;
                 }
                 firstNum = secondNum;
-                OutputCurrentEquation.Text = secondNum.ToString() + "√";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + "√";
                 OutputCurrentNumber.Text = String.Empty;
             }
             else
@@ -259,6 +279,7 @@ namespace ivsProjekt2
                 if (secondNum < 0 && firstNum % 2 == 0)
                 {
                     OutputCurrentNumber.Text = "Base number has to be >0";
+                    checkOutput();
                     computed = true;
                     return;
                 }
@@ -267,8 +288,8 @@ namespace ivsProjekt2
                 {
                     return;
                 }
-                OutputCurrentEquation.Text = outNum.ToString() + "√";
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + "√";
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
             }
 
             lastOp = Operations.root;
@@ -293,7 +314,7 @@ namespace ivsProjekt2
             if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
-                OutputCurrentEquation.Text = secondNum.ToString() + "^";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + "^";
                 OutputCurrentNumber.Text = String.Empty;
             }
             else
@@ -301,6 +322,7 @@ namespace ivsProjekt2
                 if (secondNum < 0)
                 {
                     OutputCurrentNumber.Text = "Exponent has to be > 0.";
+                    checkOutput();
                     computed = true;
                     return;
                 }
@@ -309,6 +331,7 @@ namespace ivsProjekt2
                 {
                     C_logic();
                     OutputCurrentNumber.Text = "Value has to be int";
+                    checkOutput();
                     return;
                 }
 
@@ -316,8 +339,9 @@ namespace ivsProjekt2
                 {
                     return;
                 }
-                OutputCurrentEquation.Text = outNum.ToString() + "^";
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + "^";
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
+
             }
 
             lastOp = Operations.power;
@@ -341,6 +365,7 @@ namespace ivsProjekt2
             if (secondNum < 0)
             {
                 OutputCurrentNumber.Text = "Value has to be > 0";
+                checkOutput();
                 return;
             }
 
@@ -353,6 +378,7 @@ namespace ivsProjekt2
             {
                 C_logic();
                 OutputCurrentNumber.Text = "Value has to be > 0";
+                checkOutput();
                 return;
             }
 
@@ -360,20 +386,21 @@ namespace ivsProjekt2
             {
                 C_logic();
                 OutputCurrentNumber.Text = "Value has to be int";
+                checkOutput();
                 return;
             }
 
             if (outNum == 0 || Double.IsInfinity(firstNum))
             {
-                OutputCurrentEquation.Text = secondNum.ToString() + "!";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + "!";
                 firstNum = MathFuncs.Factorial(secondNum);
-                OutputCurrentNumber.Text = firstNum.ToString();
+                OutputCurrentNumber.Text = firstNum.ToString("#.#####");
             }
             else
             {
-                OutputCurrentEquation.Text = outNum.ToString() + "!";
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + "!";
                 outNum = MathFuncs.Factorial(outNum);
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
                 firstNum = outNum;
             }
 
@@ -401,7 +428,7 @@ namespace ivsProjekt2
             if (firstNum == 0 || Double.IsInfinity(firstNum))
             { 
                 firstNum = secondNum;
-                OutputCurrentEquation.Text = secondNum.ToString() + " +";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + " +";
                 OutputCurrentNumber.Text = String.Empty;
             }
             else
@@ -410,8 +437,8 @@ namespace ivsProjekt2
                 {
                     return;
                 }
-                OutputCurrentEquation.Text = outNum.ToString() + " +";
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + " +";
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
             }
 
             lastOp = Operations.addition;
@@ -436,7 +463,7 @@ namespace ivsProjekt2
             if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
-                OutputCurrentEquation.Text = secondNum.ToString() + " -";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + " -";
                 OutputCurrentNumber.Text = String.Empty;
             }
             else
@@ -445,8 +472,8 @@ namespace ivsProjekt2
                 {
                     return;
                 }
-                OutputCurrentEquation.Text = outNum.ToString() + " -";
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + " -";
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
             }
 
             lastOp = Operations.subtractition;
@@ -471,7 +498,7 @@ namespace ivsProjekt2
             if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
-                OutputCurrentEquation.Text = secondNum.ToString() + " *";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + " *";
                 OutputCurrentNumber.Text = String.Empty;
             }
             else
@@ -480,8 +507,8 @@ namespace ivsProjekt2
                 {
                     return;
                 }
-                OutputCurrentEquation.Text = outNum.ToString() + " *";
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + " *";
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
             }
 
             lastOp = Operations.multiplication;
@@ -507,6 +534,7 @@ namespace ivsProjekt2
             if (secondNum == 0)
             {
                 OutputCurrentNumber.Text = "Cannot divide";
+                checkOutput();
                 computed = true;
                 return;
             }
@@ -514,7 +542,7 @@ namespace ivsProjekt2
             if (firstNum == 0 || Double.IsInfinity(firstNum))
             {
                 firstNum = secondNum;
-                OutputCurrentEquation.Text = secondNum.ToString() + " /";
+                OutputCurrentEquation.Text = secondNum.ToString("#.#####") + " /";
                 OutputCurrentNumber.Text = String.Empty;
             }
             else
@@ -523,8 +551,8 @@ namespace ivsProjekt2
                 {
                     return;
                 }
-                OutputCurrentEquation.Text = outNum.ToString() + " /";
-                OutputCurrentNumber.Text = outNum.ToString();
+                OutputCurrentEquation.Text = outNum.ToString("#.#####") + " /";
+                OutputCurrentNumber.Text = outNum.ToString("#.#####");
             }
             lastOp = Operations.division;
         }
@@ -545,7 +573,7 @@ namespace ivsProjekt2
             {
                 return;
             }
-            OutputCurrentNumber.Text = (Double.Parse(OutputCurrentNumber.Text) * -1).ToString();
+            OutputCurrentNumber.Text = (Double.Parse(OutputCurrentNumber.Text) * -1).ToString("#.#####");
         }
 
         /// <summary>
@@ -592,17 +620,17 @@ namespace ivsProjekt2
             switch (lastOp)
             {
                 case Operations.addition:
-                    OutputCurrentEquation.Text = firstNum.ToString() + " + " + secondNum.ToString() + " =";
+                    OutputCurrentEquation.Text = firstNum.ToString("#.#####") + " + " + secondNum.ToString("#.#####") + " =";
                     outNum = MathFuncs.Addition(firstNum, secondNum);
                     break;
 
                 case Operations.subtractition:
-                    OutputCurrentEquation.Text = firstNum.ToString() + " - " + secondNum.ToString() + " =";
+                    OutputCurrentEquation.Text = firstNum.ToString("#.#####") + " - " + secondNum.ToString("#.#####") + " =";
                     outNum = MathFuncs.Subtraction(firstNum, secondNum);
                     break;
 
                 case Operations.multiplication:
-                    OutputCurrentEquation.Text = firstNum.ToString() + " * " + secondNum.ToString() + " =";
+                    OutputCurrentEquation.Text = firstNum.ToString("#.#####") + " * " + secondNum.ToString("#.#####") + " =";
                     outNum = MathFuncs.Multiplication(firstNum, secondNum);
                     break;
 
@@ -610,11 +638,12 @@ namespace ivsProjekt2
                     if (secondNum == 0)
                     {
                         OutputCurrentNumber.Text = "Cannot divide";
+                        checkOutput();
                         computed = true;
                         equated = true;
                         return;
                     }
-                    OutputCurrentEquation.Text = firstNum.ToString() + " / " + secondNum.ToString() + " =";
+                    OutputCurrentEquation.Text = firstNum.ToString("#.#####") + " / " + secondNum.ToString("#.#####") + " =";
                     outNum = MathFuncs.Division(firstNum, secondNum);
                     break;
                 
@@ -623,19 +652,21 @@ namespace ivsProjekt2
                     {
                         C_logic();
                         OutputCurrentNumber.Text = "Exponent has to be positive int";
+                        checkOutput();
                         equated = true;
                         return;
                     } 
-                    OutputCurrentEquation.Text = firstNum.ToString() + "^" + secondNum.ToString() + " =";
+                    OutputCurrentEquation.Text = firstNum.ToString("#.#####") + "^" + secondNum.ToString("#.#####") + " =";
                     outNum = MathFuncs.Exponent(firstNum, secondNum);
                     break;
 
                 case Operations.factorial:
-                    OutputCurrentNumber.Text = outNum.ToString() + "! =";
+                    OutputCurrentNumber.Text = outNum.ToString("#.#####") + "! =";
                     if (secondNum < 0)
                     {
                         C_logic();
                         OutputCurrentNumber.Text = "Value has to be > 0.";
+                        checkOutput();
                         equated = true;
                         return;
                     }                    
@@ -643,10 +674,11 @@ namespace ivsProjekt2
                     break;
 
                 case Operations.root:
-                    OutputCurrentNumber.Text = firstNum.ToString() + "√" + secondNum.ToString() + " =";
+                    OutputCurrentEquation.Text = firstNum.ToString("#.#####") + "√" + secondNum.ToString("#.#####") + " =";
                     if (secondNum < 0 && firstNum % 2 == 0 )
                     {
                         OutputCurrentNumber.Text = "Base number has to be >0";
+                        checkOutput();
                         computed = true;
                         return;
                     }
@@ -654,7 +686,7 @@ namespace ivsProjekt2
                     break;
 
                 case Operations.modulo:
-                    OutputCurrentEquation.Text = firstNum.ToString() + " % " + secondNum.ToString() + " =";
+                    OutputCurrentEquation.Text = firstNum.ToString("#.#####") + " % " + secondNum.ToString("#.#####") + " =";
                     outNum = MathFuncs.Modulo(firstNum, secondNum);
                     break;
 
@@ -663,7 +695,7 @@ namespace ivsProjekt2
 
             }
 
-            OutputCurrentNumber.Text = outNum.ToString();
+            OutputCurrentNumber.Text = outNum.ToString("#.#####");
             lastOp = Operations.equals;
             firstNum = 0;
             secondNum = 0;
@@ -692,6 +724,7 @@ namespace ivsProjekt2
             }
 
             OutputCurrentNumber.Text += num;
+            checkOutput();
         }
 
         /// =============
