@@ -1,0 +1,53 @@
+=== Skutecnost ===
+Do 27. 3.
+Plan:
+    xsafar27 - navrh kalkulacky
+    xzelin26 - testy
+Realita:
+    xsafar27 - zalozeno repo + solution
+
+
+Do 3. 4.
+Plan:
+    xzelin26 - zakladni mat. operace
+    xzelin27 - make
+Realita:
+    -
+
+Do 10. 4.
+Plan:
+    xsafar27 - vytvorene GUI
+    xzelin26 - pokrocile mat. operace
+    xzelin27 - profiling
+Realita:
+    xzelin26 - prvni testy
+
+Do 17. 4.
+Plan:
+    xsafar27 - spojeni GUI s knihovnou
+    xzelin26 - pridavne operace
+    xzelin27 - pocatek dokumentace, uzivatelske prirucky
+Realita:
+    xsafar27 - zakladni GUI
+    xzelin26 - prvni matematicke fce
+
+Do 24. 4.
+Plan:
+    xsafar27 - (od)instalator, ovladani klavesnici, mockup dalsich verzi
+    xzelin26 - finalni debuging, optimalizace
+    xzelin27 - dodelani dokumentace
+Realita:
+    -
+
+Do 29. 4.
+Plan:
+    vsichni - dokoncovani, doladovani
+Realita:
+    xsafar27 - gui reaguje na mys a klavesnici
+    xzelin26 - dopsane testy, dopsane matematicke fce
+    xzelin27 - manual + betatesting
+
+=== Souhrn ===
+Plan pekny, ale stal se FIT a prokrastinace.
+Vsechno se dodelavalo posledni den/dva.
+Odevzdavani v 7:00 je asi nejlepsi vec.

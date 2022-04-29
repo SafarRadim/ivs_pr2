@@ -1,0 +1,36 @@
+=== Termíny & Úkoly ===
+Do 27. 3.
+xsafar27 - návrh kalkulačky
+xzelin26 - testy mat. knihovny
+
+Do 3. 4.
+xzelin26 - základní mat. operace
+xzelin27 - make
+
+Do 10. 4.
+xsafar27 - vytvořené GUI
+xzelin26 - pokročilé mat. operace
+xzelin27 - profiling
+
+Do 17. 4.
+xsafar27 - spojení GUI s knihovnou
+xzelin26 - přídavné operace
+xzelin27 - počátek dokumentace, už. příručky etc.
+
+Do 24. 4.
+xsafar27 - (od)instalátor, ovládání klávesnicí, mockupy
+xzelin26 - finální debuging, optimalizace
+xzelin27 - dodělání dokumentace
+
+Do 29. 4. (Deadline)
+všichni - dokončování, ladění, etc.
+
+
+=== Kanály ===
+Discord + Osobní setkání
+Pravidla komunikace nenastavena
+
+=== Repo ===
+github
+https://github.com/SafarRadim/ivs_pr2
+Přidán účet IVS kontrola
