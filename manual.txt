@@ -22,7 +22,7 @@ výstupní data následně vidíme v dolní linii, horní linii vidíme námi za
 “CE” - clear entry, vymaže dolní linii
 “C” - clear, vymaže dolní i horní linii
 “back” - smaže poslední zadaný znak
-“root” - provede odmocninu hodnoty
+“√” - provede odmocninu hodnoty
 “pow” - provede mocninu hodnoty
 "mod" - vypočítá zbytek po dělení
 “!” - vypočítá faktoriál hodnoty

@@ -15,5 +15,9 @@
 	<ItemGroup>
 		<ProjectReference Include="..\MathLib\MathLib.csproj" />
 	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="doxygen $(ProjectDir)docs\$(ProjectName).doxygen" />
+	</Target>
 	
 </Project>
